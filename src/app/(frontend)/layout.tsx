@@ -15,12 +15,43 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import localFont from 'next/font/local'
+
+const galgo = localFont({
+  src: '../../../public/GalgoVF.ttf',
+  variable: '--font-galgo',
+})
+
+const uncutSans = localFont({
+  src: '../../../public/UncutSans-Variable.ttf',
+  variable: '--font-uncut-sans',
+})
+
+const instrumentSerif = localFont({
+  src: [
+    {
+      path: '../../../public/InstrumentSerif-Regular.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/InstrumentSerif-Italic.ttf',
+      weight: '300',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-instrument-serif',
+})
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html
+      className={cn(instrumentSerif.variable, uncutSans.variable, galgo.variable)}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
