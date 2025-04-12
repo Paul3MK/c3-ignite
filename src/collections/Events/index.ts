@@ -27,7 +27,7 @@ export const Events: CollectionConfig = {
     },
     {
       name: 'eventImage',
-      type: 'relationship',
+      type: 'upload',
       relationTo: 'media',
       required: true,
     },
