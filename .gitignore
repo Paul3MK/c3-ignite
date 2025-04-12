@@ -2,7 +2,7 @@ build
 dist / media
 node_modules
 .DS_Store
-.env
+.env*
 .next
 .vercel
 
@@ -13,3 +13,5 @@ public/robots.txt
 public/sitemap*.xml
 
 .pnpm-store/v10
+
+.kamal/secrets
