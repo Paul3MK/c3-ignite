@@ -164,6 +164,9 @@ export interface Page {
     | PeopleCard
     | IntroSection
     | EventsBlock
+    | ScrollBlock
+    | SermonBlock
+    | Callout
   )[];
   meta?: {
     title?: string | null;
@@ -202,6 +205,7 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -784,6 +788,119 @@ export interface EventsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ScrollBlock".
+ */
+export interface ScrollBlock {
+  layout?: InfoCard[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'scroll';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoCard".
+ */
+export interface InfoCard {
+  cardCaption: string;
+  cardDescription: string;
+  link?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  cardImage: string | Media;
+  backgroundColor: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'info-card';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sermonBlock".
+ */
+export interface SermonBlock {
+  videos: {
+    sermonDate?: string | null;
+    speaker?: string | null;
+    sermonTitle?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'sermons';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Callout".
+ */
+export interface Callout {
+  backgroundColor: string;
+  caption: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  summaryText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  CTAs?:
+    | {
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'calloutBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -1091,6 +1208,9 @@ export interface PagesSelect<T extends boolean = true> {
         'people-card'?: T | PeopleCardSelect<T>;
         'intro-section'?: T | IntroSectionSelect<T>;
         events?: T | EventsBlockSelect<T>;
+        scroll?: T | ScrollBlockSelect<T>;
+        sermons?: T | SermonBlockSelect<T>;
+        calloutBlock?: T | CalloutSelect<T>;
       };
   meta?:
     | T
@@ -1229,6 +1349,65 @@ export interface EventsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ScrollBlock_select".
+ */
+export interface ScrollBlockSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        'info-card'?: T | InfoCardSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoCard_select".
+ */
+export interface InfoCardSelect<T extends boolean = true> {
+  cardCaption?: T;
+  cardDescription?: T;
+  link?: T;
+  cardImage?: T;
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sermonBlock_select".
+ */
+export interface SermonBlockSelect<T extends boolean = true> {
+  videos?:
+    | T
+    | {
+        sermonDate?: T;
+        speaker?: T;
+        sermonTitle?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Callout_select".
+ */
+export interface CalloutSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  caption?: T;
+  summaryText?: T;
+  CTAs?:
+    | T
+    | {
+        content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1265,6 +1444,7 @@ export interface PostsSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
