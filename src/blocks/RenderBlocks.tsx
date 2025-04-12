@@ -10,6 +10,9 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { PeopleCard } from './PeopleCard/Component'
 import { IntroSection } from './Intro/Component'
 import { EventsBlock } from './Events/Component'
+import { ScrollBlock } from './ScrollSection/Component'
+import { SermonBlock } from './SermonBlock/Component'
+import { CalloutBlock } from './Callout/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +23,9 @@ const blockComponents = {
   'people-card': PeopleCard,
   'intro-section': IntroSection,
   events: EventsBlock,
+  scroll: ScrollBlock,
+  sermons: SermonBlock,
+  calloutBlock: CalloutBlock,
 }
 
 export const RenderBlocks: React.FC<{

@@ -17,6 +17,7 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Events } from './collections/Events'
+import { NextResponse } from 'next/server'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -61,7 +62,7 @@ export default buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+    url: process.env.MONGODB_URI || '',
   }),
   collections: [Pages, Posts, Media, Categories, Users, Events],
   cors: [getServerSideURL()].filter(Boolean),
@@ -75,6 +76,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  endpoints: [
+    {
+      path: '/up',
+      method: 'get',
+      handler: () => {
+        return NextResponse.json({}, { status: 200 })
+      },
+    },
+  ],
   jobs: {
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {

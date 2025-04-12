@@ -23,6 +23,9 @@ import {
 import { PeopleCard } from '@/blocks/PeopleCard/config'
 import { IntroSection } from '@/blocks/Intro/config'
 import { Events } from '@/blocks/Events/config'
+import { ScrollSection } from '@/blocks/ScrollSection/config'
+import { SermonBlock } from '@/blocks/SermonBlock/config'
+import { Callout } from '@/blocks/Callout/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -87,6 +90,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 PeopleCard,
                 IntroSection,
                 Events,
+                ScrollSection,
+                SermonBlock,
+                Callout,
               ],
               required: true,
               admin: {
