@@ -20,17 +20,19 @@ export const ScrollBlock: React.FC<ScrollBlockProps> = (props) => {
   const x = useTransform(scrollYProgress, [0, 1], ['0%', `-${transformLimit}%`])
   if (props.layout) {
     return (
-      <section
-        ref={targetRef}
-        className="container mx-auto p-0 relative"
-        style={{ height: `${trackHeight}vh` }}
-      >
-        <div className="sticky top-0 flex h-screen items-center">
-          <motion.div style={{ translateX: x }} className="flex gap-4">
-            <RenderScrollBlock blocks={props.layout} />
-          </motion.div>
-        </div>
-      </section>
+      <div className="overflow-x-clip w-full h-full">
+        <section
+          ref={targetRef}
+          className="container mx-auto p-0 relative"
+          style={{ height: `${trackHeight}vh` }}
+        >
+          <div className="sticky top-0 flex h-screen items-center">
+            <motion.div style={{ translateX: x }} className="flex gap-4 w-full">
+              <RenderScrollBlock blocks={props.layout} />
+            </motion.div>
+          </div>
+        </section>
+      </div>
     )
   }
 }
@@ -51,7 +53,7 @@ const RenderScrollBlock: React.FC<{ blocks: ScrollBlockProps['layout'] }> = (pro
 
             if (Block) {
               return (
-                <div className="my-16 flex-shrink-0" key={index}>
+                <div className="my-16 flex-shrink-0 flex w-full" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>
