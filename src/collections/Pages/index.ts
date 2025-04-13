@@ -26,6 +26,7 @@ import { Events } from '@/blocks/Events/config'
 import { ScrollSection } from '@/blocks/ScrollSection/config'
 import { SermonBlock } from '@/blocks/SermonBlock/config'
 import { Callout } from '@/blocks/Callout/config'
+import { AccordionSection } from '@/blocks/AccordionSection/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -93,6 +94,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ScrollSection,
                 SermonBlock,
                 Callout,
+                AccordionSection,
               ],
               required: true,
               admin: {

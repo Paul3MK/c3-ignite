@@ -13,6 +13,7 @@ import { EventsBlock } from './Events/Component'
 import { ScrollBlock } from './ScrollSection/Component'
 import { SermonBlock } from './SermonBlock/Component'
 import { CalloutBlock } from './Callout/Component'
+import { AccordionSection } from './AccordionSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -26,6 +27,7 @@ const blockComponents = {
   scroll: ScrollBlock,
   sermons: SermonBlock,
   calloutBlock: CalloutBlock,
+  'accordion-section': AccordionSection,
 }
 
 export const RenderBlocks: React.FC<{
