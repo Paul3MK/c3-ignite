@@ -12,15 +12,17 @@ export const CalloutBlock: React.FC<CalloutProps> = (props) => {
         />
         <div className="flex flex-col col-span-5 col-start-8 gap-16">
           <RichText data={props.summaryText} className="font-sans text-[21px] text-white" />
-          {props.CTAs?.map((cta) => (
-            <span
-              key={cta.id}
-              className="grid gap-3 grid-flow-row grid-cols-[auto_auto] justify-start items-end "
-            >
-              <RichText data={cta.content!} className="text-white w-fit text-[28px] font-serif" />{' '}
-              <ArrowUpRight className="text-white ml-4" />
-            </span>
-          ))}
+          <div className="flex flex-col gap-5">
+            {props.CTAs?.map((cta) => (
+              <span
+                key={cta.id}
+                className="grid gap-3 grid-flow-row grid-cols-[auto_auto] justify-start items-center "
+              >
+                <RichText data={cta.content!} className="text-white w-fit text-[28px] font-serif" />{' '}
+                <ArrowUpRight className="text-white ml-4" />
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
