@@ -35,6 +35,12 @@ export const hero: Field = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'mediaPosition',
+      type: 'number',
+      defaultValue: 30,
+      required: true,
+    },
   ],
   label: false,
 }
