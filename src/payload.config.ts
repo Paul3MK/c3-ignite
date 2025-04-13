@@ -18,6 +18,8 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Events } from './collections/Events'
 import { NextResponse } from 'next/server'
+import { FAQCategories } from './collections/FAQCategories'
+import { FAQs } from './collections/FAQs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -64,7 +66,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Events],
+  collections: [Pages, Posts, Media, Categories, Users, Events, FAQCategories, FAQs],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

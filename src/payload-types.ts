@@ -73,6 +73,8 @@ export interface Config {
     categories: Category;
     users: User;
     events: Event;
+    'faq-categories': FaqCategory;
+    faqs: Faq;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -90,6 +92,8 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -154,6 +158,7 @@ export interface Page {
     type: 'none' | 'full' | 'half';
     displayText?: string | null;
     media: string | Media;
+    mediaPosition: number;
   };
   layout: (
     | CallToActionBlock
@@ -167,6 +172,7 @@ export interface Page {
     | ScrollBlock
     | SermonBlock
     | Callout
+    | AccordionSection
   )[];
   meta?: {
     title?: string | null;
@@ -901,6 +907,28 @@ export interface Callout {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AccordionSection".
+ */
+export interface AccordionSection {
+  backgroundColor?: string | null;
+  title?: string | null;
+  content?: (string | null) | FaqCategory;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'accordion-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-categories".
+ */
+export interface FaqCategory {
+  id: string;
+  category?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -923,6 +951,32 @@ export interface Event {
     [k: string]: unknown;
   };
   eventImage: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question?: string | null;
+  answer?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  faqCategory?: (string | null) | FaqCategory;
   updatedAt: string;
   createdAt: string;
 }
@@ -1123,6 +1177,14 @@ export interface PayloadLockedDocument {
         value: string | Event;
       } | null)
     | ({
+        relationTo: 'faq-categories';
+        value: string | FaqCategory;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -1196,6 +1258,7 @@ export interface PagesSelect<T extends boolean = true> {
         type?: T;
         displayText?: T;
         media?: T;
+        mediaPosition?: T;
       };
   layout?:
     | T
@@ -1211,6 +1274,7 @@ export interface PagesSelect<T extends boolean = true> {
         scroll?: T | ScrollBlockSelect<T>;
         sermons?: T | SermonBlockSelect<T>;
         calloutBlock?: T | CalloutSelect<T>;
+        'accordion-section'?: T | AccordionSectionSelect<T>;
       };
   meta?:
     | T
@@ -1408,6 +1472,17 @@ export interface CalloutSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AccordionSection_select".
+ */
+export interface AccordionSectionSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  title?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1576,6 +1651,26 @@ export interface EventsSelect<T extends boolean = true> {
   eventDate?: T;
   summary?: T;
   eventImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-categories_select".
+ */
+export interface FaqCategoriesSelect<T extends boolean = true> {
+  category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  faqCategory?: T;
   updatedAt?: T;
   createdAt?: T;
 }
