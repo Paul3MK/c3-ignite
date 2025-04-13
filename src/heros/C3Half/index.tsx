@@ -1,5 +1,4 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 
 import type { Page } from '@/payload-types'
@@ -9,17 +8,8 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
 export const HalfHeightHero: React.FC<Page['hero']> = ({ displayText, media }) => {
-  const { setHeaderTheme } = useHeaderTheme()
-
-  useEffect(() => {
-    setHeaderTheme('dark')
-  })
-
   return (
-    <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white"
-      data-theme="dark"
-    >
+    <div className="relative -mt-[10.4rem] flex items-center justify-center text-white">
       <div className="container mb-8 z-10 relative flex items-center justify-center">
         <div className="max-w-[36.5rem] md:text-center">
           {displayText && <h1 className="mb-6 font-headline text-5xl">{displayText}</h1>}
