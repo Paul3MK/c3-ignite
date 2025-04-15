@@ -17,7 +17,7 @@ export const FullHero: React.FC<Page['hero']> = ({ displayText, media, mediaPosi
   return (
     <div className="relative flex items-end justify-center text-white bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.4)]">
       <div className="container mb-8 z-10 relative flex items-end">
-        <div className="max-w-[24rem] leading-[0.7]">
+        <div className="max-w-[60%] md:max-w-[24rem] leading-[0.7]">
           {displayText && (
             <h1 className="font-headline text-[5.625rem] md:text-[7.5rem] uppercase">
               {displayText}
@@ -32,7 +32,7 @@ export const FullHero: React.FC<Page['hero']> = ({ displayText, media, mediaPosi
             imgClassName="-z-10 object-cover"
             priority
             resource={media}
-            style={{ objectPosition: `0% ${mediaPosition}%` }}
+            style={{ objectPosition: `center ${mediaPosition}%` }}
           />
         )}
       </div>
