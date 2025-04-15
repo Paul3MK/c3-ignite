@@ -47,6 +47,19 @@
     --success: 196 52% 74%;
     --warning: 34 89% 85%;
     --error: 10 100% 86%;
+
+    --divine-blue: 197 100% 31%;
+    --midnight-black: 0 0% 9%;
+    --true-vine-green: 156 62% 28%;
+    --holy-ghost-blue: 189 100% 68%;
+    --ignition-red: 18 85% 54%;
+    --heaven-white: 198 52% 95%;
+
+    --ignite-gray: 0 0% 14%;
+    --ignite-pine: 147 39% 25%;
+    --ignite-green: 58 100% 35%;
+    --ignite-yellow: 48 87% 49%;
+    --ignite-brick: 8 63% 45%;
   }
 
   [data-theme='dark'] {
