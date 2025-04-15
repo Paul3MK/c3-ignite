@@ -11,7 +11,7 @@ export const PeopleCard: Block = {
   fields: [
     {
       name: 'coverImage',
-      type: 'relationship',
+      type: 'upload',
       relationTo: 'media',
     },
     {
