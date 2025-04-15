@@ -17,7 +17,7 @@ export const EventsBlock: React.FC<EventsProps> = async (props) => {
   })
 
   return (
-    <div className="container mx-auto font-sans flex flex-col justify-between gap-8 md:gap-16">
+    <div className="container mx-auto flex flex-col justify-between gap-8 md:gap-16">
       <h2 className="font-serif text-[1.750rem] md:text-[3.188rem]">{props.heading}</h2>
       <div className="grid grid-cols-4 grid-flow-row md:grid-flow-col md:grid-cols-12 gap-3 md:gap-4">
         {events.docs.map((event) => (

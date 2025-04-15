@@ -27,7 +27,7 @@ export const ScrollBlock: React.FC<ScrollBlockProps> = (props) => {
           style={{ height: `${trackHeight}vh` }}
         >
           <div className="sticky top-0 flex h-screen items-center">
-            <motion.div style={{ translateX: x }} className="flex gap-4 w-full">
+            <motion.div style={{ translateX: x }} className="flex w-full">
               <RenderScrollBlock blocks={props.layout} />
             </motion.div>
           </div>
