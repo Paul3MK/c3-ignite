@@ -13,6 +13,7 @@ export const AccordionSection: React.FC<AccordionSectionProps> = async ({
   backgroundColor,
   title,
   content,
+  contentColor,
 }) => {
   const payload = await getPayload({ config })
 
@@ -26,14 +27,14 @@ export const AccordionSection: React.FC<AccordionSectionProps> = async ({
   })
 
   return (
-    <div style={{ backgroundColor: backgroundColor ? backgroundColor : '' }}>
-      <div className="container mx-auto py-20 text-white grid grid-flow-row gap-16">
-        <h3 className="font-serif text-[51px]">{title}</h3>
+    <div style={{ backgroundColor: backgroundColor, color: contentColor }}>
+      <div className="container mx-auto py-20  grid grid-flow-row gap-16">
+        <h3 className="font-serif text-[1.75rem] md:text-[3.188rem]">{title}</h3>
         <Accordion type="single" collapsible>
           {faqs.docs.map((doc) => {
             return (
               <AccordionItem value={doc.id} key={doc.id}>
-                <AccordionTrigger className="text-white text-[21px]">
+                <AccordionTrigger className=" text-base font-semibold md:font-normal md:text-[1.312rem]">
                   {doc.question}
                 </AccordionTrigger>
                 <AccordionContent>

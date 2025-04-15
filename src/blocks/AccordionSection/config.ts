@@ -7,6 +7,8 @@ export const AccordionSection: Block = {
     {
       name: 'backgroundColor',
       type: 'text',
+      required: true,
+      defaultValue: '#00000000',
     },
     {
       name: 'title',
@@ -16,6 +18,13 @@ export const AccordionSection: Block = {
       name: 'content',
       type: 'relationship',
       relationTo: 'faq-categories',
+      required: true,
+    },
+    {
+      name: 'contentColor',
+      type: 'text',
+      defaultValue: '#181818',
+      required: true,
     },
   ],
 }
