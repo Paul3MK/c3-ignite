@@ -12,8 +12,10 @@ export const InfoCard: Block = {
     },
     {
       name: 'cardDescription',
-      type: 'text',
-      required: true,
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => defaultFeatures,
+      }),
     },
     {
       name: 'link',
@@ -26,12 +28,33 @@ export const InfoCard: Block = {
       name: 'cardImage',
       type: 'upload',
       relationTo: 'media',
-      required: true,
     },
     {
       name: 'backgroundColor',
       type: 'text',
       defaultValue: '#00719C',
+      required: true,
+    },
+    {
+      name: 'contentColor',
+      type: 'text',
+      defaultValue: '#ECF5F9',
+      required: true,
+    },
+    {
+      name: 'variant',
+      type: 'select',
+      options: [
+        {
+          label: 'Full width',
+          value: 'fullWidth',
+        },
+        {
+          label: 'Chip',
+          value: 'chip',
+        },
+      ],
+      defaultValue: 'fullWidth',
       required: true,
     },
   ],
