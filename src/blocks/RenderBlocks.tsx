@@ -14,6 +14,9 @@ import { ScrollBlock } from './ScrollSection/Component'
 import { SermonBlock } from './SermonBlock/Component'
 import { CalloutBlock } from './Callout/Component'
 import { AccordionSection } from './AccordionSection/Component'
+import { TextSection } from './TextSection/Component'
+import { GridBlock } from './GridSection/Component'
+import { ListBlock } from './ListBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -28,6 +31,9 @@ const blockComponents = {
   sermons: SermonBlock,
   calloutBlock: CalloutBlock,
   'accordion-section': AccordionSection,
+  'text-section': TextSection,
+  grid: GridBlock,
+  listBlock: ListBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -46,7 +52,14 @@ export const RenderBlocks: React.FC<{
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
 
-            if (Block) {
+            if (Block && index == blocks.length - 1) {
+              return (
+                <div className="mt-16" key={index}>
+                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
+                  <Block {...block} disableInnerContainer />
+                </div>
+              )
+            } else if (Block) {
               return (
                 <div className="my-16" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}

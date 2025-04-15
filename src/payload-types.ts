@@ -173,6 +173,9 @@ export interface Page {
     | SermonBlock
     | Callout
     | AccordionSection
+    | TextSection
+    | GridBlock
+    | ListBlock
   )[];
   meta?: {
     title?: string | null;
@@ -808,7 +811,21 @@ export interface ScrollBlock {
  */
 export interface InfoCard {
   cardCaption: string;
-  cardDescription: string;
+  cardDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   link?: {
     root: {
       type: string;
@@ -824,8 +841,10 @@ export interface InfoCard {
     };
     [k: string]: unknown;
   } | null;
-  cardImage: string | Media;
+  cardImage?: (string | null) | Media;
   backgroundColor: string;
+  contentColor: string;
+  variant: 'fullWidth' | 'chip';
   id?: string | null;
   blockName?: string | null;
   blockType: 'info-card';
@@ -910,9 +929,10 @@ export interface Callout {
  * via the `definition` "AccordionSection".
  */
 export interface AccordionSection {
-  backgroundColor?: string | null;
+  backgroundColor: string;
   title?: string | null;
-  content?: (string | null) | FaqCategory;
+  content: string | FaqCategory;
+  contentColor: string;
   id?: string | null;
   blockName?: string | null;
   blockType: 'accordion-section';
@@ -926,6 +946,87 @@ export interface FaqCategory {
   category?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextSection".
+ */
+export interface TextSection {
+  heading: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'text-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GridBlock".
+ */
+export interface GridBlock {
+  layout?: InfoCard[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'grid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ListBlock".
+ */
+export interface ListBlock {
+  title?: string | null;
+  variant: 'simple' | 'expanded';
+  content: {
+    main: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    sub?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image?: (string | null) | Media;
+    mediaPosition?: number | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'listBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1275,6 +1376,9 @@ export interface PagesSelect<T extends boolean = true> {
         sermons?: T | SermonBlockSelect<T>;
         calloutBlock?: T | CalloutSelect<T>;
         'accordion-section'?: T | AccordionSectionSelect<T>;
+        'text-section'?: T | TextSectionSelect<T>;
+        grid?: T | GridBlockSelect<T>;
+        listBlock?: T | ListBlockSelect<T>;
       };
   meta?:
     | T
@@ -1434,6 +1538,8 @@ export interface InfoCardSelect<T extends boolean = true> {
   link?: T;
   cardImage?: T;
   backgroundColor?: T;
+  contentColor?: T;
+  variant?: T;
   id?: T;
   blockName?: T;
 }
@@ -1478,6 +1584,49 @@ export interface AccordionSectionSelect<T extends boolean = true> {
   backgroundColor?: T;
   title?: T;
   content?: T;
+  contentColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextSection_select".
+ */
+export interface TextSectionSelect<T extends boolean = true> {
+  heading?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GridBlock_select".
+ */
+export interface GridBlockSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        'info-card'?: T | InfoCardSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ListBlock_select".
+ */
+export interface ListBlockSelect<T extends boolean = true> {
+  title?: T;
+  variant?: T;
+  content?:
+    | T
+    | {
+        main?: T;
+        sub?: T;
+        image?: T;
+        mediaPosition?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

@@ -27,6 +27,9 @@ import { ScrollSection } from '@/blocks/ScrollSection/config'
 import { SermonBlock } from '@/blocks/SermonBlock/config'
 import { Callout } from '@/blocks/Callout/config'
 import { AccordionSection } from '@/blocks/AccordionSection/config'
+import { TextSection } from '@/blocks/TextSection/config'
+import { GridSection } from '@/blocks/GridSection/config'
+import { ListBlock } from '@/blocks/ListBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -95,6 +98,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 SermonBlock,
                 Callout,
                 AccordionSection,
+                TextSection,
+                GridSection,
+                ListBlock,
               ],
               required: true,
               admin: {
