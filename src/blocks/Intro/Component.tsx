@@ -4,7 +4,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   return (
     <div style={{ backgroundColor: props.backgroundColor }} className="-mt-16">
-      <div className="container mx-auto py-20 relative grid grid-cols-4 md:grid-cols-12 gap-20 md:gap-4 grid-flow-col items-center">
+      <div className="container mx-auto py-20 md:py-40 relative grid grid-cols-4 md:grid-cols-12 gap-20 md:gap-4 grid-flow-col items-center">
         <span
           style={{ color: props.accentColor, opacity: '10%' }}
           className="font-headline text-[7.5rem] md:text-[13.3rem] absolute left-8 bottom-24 md:bottom-auto max-w-[42rem] my-auto leading-[0.7] uppercase"

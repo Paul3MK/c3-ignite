@@ -9,8 +9,8 @@ const defaultOpenGraph: Metadata['openGraph'] = {
       url: `${getServerSideURL()}/website-template-OG.webp`,
     },
   ],
-  siteName: 'C3 Ignite Church',
-  title: 'C3 Ignite Church',
+  siteName: 'C3 Ignite Church Accra',
+  title: 'C3 Ignite Church Accra',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

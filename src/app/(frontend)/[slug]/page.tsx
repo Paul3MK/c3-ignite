@@ -11,6 +11,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import clsx from 'clsx'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -55,10 +56,14 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
+  const { hero, layout, paddedBottom } = page
 
   return (
-    <article className="">
+    <article
+      className={clsx({
+        'pb-16': paddedBottom == true,
+      })}
+    >
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />

@@ -107,6 +107,13 @@ export const Pages: CollectionConfig<'pages'> = {
                 initCollapsed: true,
               },
             },
+            {
+              name: 'paddedBottom',
+              type: 'checkbox',
+              label: 'Add bottom padding?',
+              defaultValue: false,
+              required: true,
+            },
           ],
           label: 'Content',
         },

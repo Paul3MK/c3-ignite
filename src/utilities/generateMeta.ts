@@ -26,7 +26,7 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title ? doc?.meta?.title + ' | C3 Ignite Church' : 'C3 Ignite Church'
+  const title = doc?.meta?.title ? doc?.meta?.title : 'C3 Ignite Church Accra'
 
   return {
     description: doc?.meta?.description,

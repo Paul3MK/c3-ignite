@@ -177,6 +177,7 @@ export interface Page {
     | GridBlock
     | ListBlock
   )[];
+  paddedBottom: boolean;
   meta?: {
     title?: string | null;
     /**
@@ -1380,6 +1381,7 @@ export interface PagesSelect<T extends boolean = true> {
         grid?: T | GridBlockSelect<T>;
         listBlock?: T | ListBlockSelect<T>;
       };
+  paddedBottom?: T;
   meta?:
     | T
     | {
